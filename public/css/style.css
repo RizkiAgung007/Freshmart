@@ -1,0 +1,124 @@
+html {
+  scroll-behavior: smooth;
+ }
+
+.hero-banner {
+  width: 100%;
+  height: 34rem; 
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  transition: opacity 0.75s ease-in-out;
+  border-radius: 8px;
+}
+
+/* KATEGORI */
+.icon-hide {
+  position: absolute;
+  bottom: -20px; 
+  opacity: 0; 
+  display: flex;
+  transition: bottom 0.3s ease-in, opacity 0.3s ease-in; 
+}
+
+.cart-item:hover .icon-hide {
+  bottom: 2px;  
+  opacity: 1; 
+}
+
+.cart-item:hover .price {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* NEWS LETTER */
+.title {
+  position: absolute;
+}
+
+/* NEW ARRIVAL */
+.icon-right {
+  position: absolute;
+  right: 4px;
+  opacity: 0;
+  display: block;
+  transition: opacity 0.3s ease-in;
+}
+
+.cart-item:hover .icon-right {
+  top: 0;
+  right: 4px; 
+  opacity: 1; 
+}
+
+/* Custom styles if needed */
+.aos-init {
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* BACK TO TOP */
+.cta {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 250ms ease;
+  z-index: 30;
+}
+
+.cta.active {
+  transform: translateY(-10px);
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.drop-down {
+  position: absolute;
+  top: 5%;
+  right: 14%;
+  width: max-content;
+  padding: 5px;
+}
+
+.drop-flag {
+  position: absolute;
+  top: 5%;
+  right: 6%;
+  padding: 5px;
+}
+
+.drop-curr {
+  position: absolute;
+  top: 5%;
+  right: 8%;
+}
+
+.icon-search {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.search-input {
+  width: 150px;
+  padding-left: 40px; /* Untuk menyesuaikan ikon pencarian */
+  transition: width 0.3s ease;
+}
+
+.search-input:focus {
+  width: 220px; /* Lebar yang diinginkan saat input aktif */
+}
+
+/* PAGINATION */
+.pagination-item.active {
+  background: rgb(22 163 74);
+  color: #ffffff;
+}

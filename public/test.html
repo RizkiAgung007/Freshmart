@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+  />
+
+  <!-- Link css -->
+  <link rel="stylesheet" href="../public/css/output.css" />
+  <link rel="stylesheet" href="../public/css/style.css" />
+
+  <!-- Google icon -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Playfair+Display:300,400,700"
+    rel="stylesheet"
+  />
+</head>
+<body>
+    <!-- Icon Cart -->
+<div id="cart-icon" class="relative">
+    <img src="../image/icon/cart.png" alt="shop-cart" class="w-12 h-12 p-2 rounded-full bg-green-400 cursor-pointer"/>
+    <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white text-sm rounded-full w-6 h-6 flex items-center justify-center hidden">0</span>
+</div>
+
+<!-- Item -->
+<div data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+    <!-- ... your item code ... -->
+    <input type="number" id="quantity" class="w-24 outline-none rounded-lg bg-gray-200 p-1 focus-within:ring-2 focus-within:ring-green-400">
+    <a href="#" id="add-to-cart" class="flex items-center justify-center bg-green-600 hover:bg-green-400 transition-all pr-2 rounded-full">
+        <img src="../image/icon/cart.png" alt="" class="w-10 h-10 p-2">
+        <p class="text-white font-serif">Add to cart</p>
+    </a>
+</div>
+
+<!-- Cart Modal -->
+<div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+        <div id="cart-items" class="flex flex-col gap-4"></div>
+        <div class="mt-4">
+            <p id="total-price" class="text-lg font-semibold">Total: Rp. 0</p>
+        </div>
+        <button id="close-cart" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-400">Close</button>
+    </div>
+</div>
+
+<script>
+    let cartCount = 0;
+    let totalPrice = 0;
+
+    const cartIcon = document.getElementById('cart-icon');
+    const cartCountEl = document.getElementById('cart-count');
+    const cartModal = document.getElementById('cart-modal');
+    const cartItemsEl = document.getElementById('cart-items');
+    const totalPriceEl = document.getElementById('total-price');
+    const addToCartBtn = document.getElementById('add-to-cart');
+    const closeCartBtn = document.getElementById('close-cart');
+
+    addToCartBtn.addEventListener('click', function() {
+        const quantity = document.getElementById('quantity').value;
+        const price = 80000; // Harga satuan
+        const itemName = 'Jeruk Arum Manis';
+        const itemImage = '../image/product/1.jpg';
+
+        if (quantity > 0) {
+            cartCount += parseInt(quantity);
+            totalPrice += price * quantity;
+
+            cartCountEl.textContent = cartCount;
+            cartCountEl.classList.remove('hidden');
+
+            // Tambahkan item ke keranjang
+            const cartItem = document.createElement('div');
+            cartItem.className = 'flex justify-between items-center';
+            cartItem.innerHTML = `
+                <img src="${itemImage}" alt="" class="w-16 h-16 object-cover rounded-lg">
+                <div class="flex flex-col flex-grow ml-4">
+                    <p class="text-lg">${itemName}</p>
+                    <p>Harga Satuan: Rp. ${price.toLocaleString()}</p>
+                    <p>Jumlah: ${quantity}</p>
+                </div>
+                <p class="text-lg font-semibold">Rp. ${(price * quantity).toLocaleString()}</p>
+            `;
+            cartItemsEl.appendChild(cartItem);
+
+            totalPriceEl.textContent = `Total: Rp. ${totalPrice.toLocaleString()}`;
+        }
+    });
+
+    cartIcon.addEventListener('click', function() {
+        cartModal.classList.remove('hidden');
+    });
+
+    closeCartBtn.addEventListener('click', function() {
+        cartModal.classList.add('hidden');
+    });
+</script>
+
+</body>
+</html>
